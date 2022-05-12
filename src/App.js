@@ -29,34 +29,28 @@ class App extends React.Component {
 
   renderStatDisp(s) {
     return (
-      <StatValue 
-        whatStat={s}
-        value={this.state} 
-        addClick={() => this.addStat(s)}
-        subClick={() => this.subStat(s)}
-      />
+      <div className='statDisp '>
+        <SubButton onClick={() => this.subStat(s)}/>
+        <DisplayVal value={this.state.stat[s]}/>
+        <AddButton onClick={() => this.addStat(s)}/>
+      </div>
+      
     );
   }
 
   render() {
     return (
       <div className="App">
-        {this.renderStatDisp(0)}
-        {this.renderStatDisp(1)}
+        <div className='StatBlock'>
+          {this.renderStatDisp(0)}
+          {this.renderStatDisp(1)}
+        </div>
+        <div>Other Stuff Goes Here</div>
+        <div>More stuff in this Div</div>
       </div>
     );
   }
 
-}
-
-function StatValue(props) {
-  return(
-    <div>
-      <AddButton onClick={props.addClick}/>
-      <DisplayVal value={props.value.stat[props.whatStat]}/>
-      <SubButton onClick={props.subClick}/>
-    </div>
-  );
 }
 
 function AddButton(props) {
@@ -77,7 +71,10 @@ function SubButton(props) {
 }
 function DisplayVal(props) {
   return(
-    <h1>{props.value}</h1>
+    <div>
+      <h1>{(props.value-10)/2}</h1>
+      <h3>{props.value}</h3>
+    </div>
   )
 }
 
