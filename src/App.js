@@ -5,7 +5,7 @@ class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      stat: [0],
+      stat: [0, 0],
     };
   }
 
@@ -27,15 +27,22 @@ class App extends React.Component {
 
   }
 
+  renderStatDisp(s) {
+    return (
+      <StatValue 
+        whatStat={s}
+        value={this.state} 
+        addClick={() => this.addStat(s)}
+        subClick={() => this.subStat(s)}
+      />
+    );
+  }
+
   render() {
     return (
       <div className="App">
-        <StatValue 
-          whatStat={0}
-          value={this.state} 
-          addClick={(s) => this.addStat(s)}
-          subClick={(s) => this.subStat(s)}
-        />
+        {this.renderStatDisp(0)}
+        {this.renderStatDisp(1)}
       </div>
     );
   }
@@ -45,9 +52,9 @@ class App extends React.Component {
 function StatValue(props) {
   return(
     <div>
-      <AddButton onClick={() => props.addClick(props.whatStat)}/>
+      <AddButton onClick={props.addClick}/>
       <DisplayVal value={props.value.stat[props.whatStat]}/>
-      <SubButton onClick={() => props.subClick(props.whatStat)}/>
+      <SubButton onClick={props.subClick}/>
     </div>
   );
 }
