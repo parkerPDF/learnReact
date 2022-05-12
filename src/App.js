@@ -5,14 +5,37 @@ class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      stat1: 0,
+      stat: [0],
     };
+  }
+
+  addStat(statNum){
+    let stats = [...this.state.stat];
+    stats[statNum] += 1
+    this.setState({
+      stat: stats
+    });
+
+  }
+
+  subStat(statNum){
+    let stats = [...this.state.stat];
+    stats[statNum] -= 1
+    this.setState({
+      stat: stats
+    });
+
   }
 
   render() {
     return (
       <div className="App">
-        <StatValue value={this.state}/>
+        <StatValue 
+          whatStat={0}
+          value={this.state} 
+          addClick={(s) => this.addStat(s)}
+          subClick={(s) => this.subStat(s)}
+        />
       </div>
     );
   }
@@ -22,21 +45,27 @@ class App extends React.Component {
 function StatValue(props) {
   return(
     <div>
-      <AddButton/>
-      <DisplayVal value={props.value.stat1}/>
-      <SubButton/>
+      <AddButton onClick={() => props.addClick(props.whatStat)}/>
+      <DisplayVal value={props.value.stat[props.whatStat]}/>
+      <SubButton onClick={() => props.subClick(props.whatStat)}/>
     </div>
   );
 }
 
 function AddButton(props) {
   return (
-    <button className='addButton'>+</button>
+    <button 
+      className='addButton'
+      onClick={props.onClick}
+    >+</button>
   );
 }
 function SubButton(props) {
   return (
-    <button className='subButton'>-</button>
+    <button 
+      className='subButton'
+      onClick={props.onClick}
+    >-</button>
   );
 }
 function DisplayVal(props) {
