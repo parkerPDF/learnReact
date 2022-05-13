@@ -1,38 +1,49 @@
 .App {
   text-align: center;
+  display: grid;
+  margin: 3px;
+  grid-template-columns: [first] 20% [line2] 50% [line3] 30%;
+  grid-auto-rows: auto;
+  grid-template-areas: 
+  "StatBlock NameBlock TbdBlock"
+  "StatBlock TestFormat TbdBlock";
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.statDisp {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  border-style: groove;
+  border-width: 1px;
+  border-radius: .5em;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.statNum {
+  border-image-width: 1px;
+  border-style: groove;
+  border-color: black;
+  border-radius: .5em;
+  border-width: 1px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.mathButton {
+  height:30%;
+  width:30%;
+  margin-left: 45%;
+  margin-top: 45%;
 }
 
-.App-link {
-  color: #61dafb;
+.StatBlock {
+  grid-area: StatBlock;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.NameBlock {
+  grid-area: NameBlock;
+}
+.TbdBlock {
+  grid-area: TbdBlock;
+}
+#TestFormat {
+  grid-area: TestFormat;
+  border-style: groove;
+  border-radius: .5em;
+  border-width: 1px;
 }

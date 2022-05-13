@@ -11,13 +11,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-.statDisp {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-}
-
-.App {
-  display: grid;
-  grid-template-columns: [first] 20% [line2] 50% [line3] 30%;
-}

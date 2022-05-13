@@ -33,7 +33,7 @@ class App extends React.Component {
     return (
       <div className='statDisp'>
         <SubButton onClick={() => this.subStat(s)}/>
-        <DisplayVal value={this.state.stat[s]}/>
+        <DisplayVal className='statNum' value={this.state.stat[s]}/>
         <AddButton onClick={() => this.addStat(s)}/>
       </div>
       
@@ -48,7 +48,7 @@ class App extends React.Component {
           {this.renderStatDisp(1)}
           {this.renderStatDisp(2)}
         </div>
-        <div>
+        <div className='NameBlock'>
           <GenericInput 
             value={this.state.name} 
             onChange={(name) => {
@@ -60,7 +60,8 @@ class App extends React.Component {
             this.setState({nameLocked: !this.state.nameLocked})
           }}>Lock Name</button>
         </div>
-        <div>More stuff in this Div</div>
+        <div className='TbdBlock'>More stuff in this Div</div>
+        <div id="TestFormat"><h4>Testing This</h4></div>
       </div>
     );
   }
@@ -97,7 +98,7 @@ class GenericInput extends React.Component{
 function AddButton(props) {
   return (
     <button 
-      className='addButton'
+      className='mathButton'
       onClick={props.onClick}
     >+</button>
   );
@@ -105,16 +106,17 @@ function AddButton(props) {
 function SubButton(props) {
   return (
     <button 
-      className='subButton'
+      className='mathButton'
       onClick={props.onClick}
     >-</button>
   );
 }
 function DisplayVal(props) {
+  const {value, ...restOfProps} = props
   return(
-    <div>
-      <h1>{((props.value-10) < 1 ? ((props.value-10)/2).toFixed() : ((props.value-11)/2).toFixed())}</h1>
-      <h3>{props.value}</h3>
+    <div {...restOfProps}>
+      <h1>{((value-10) < 1 ? ((value-10)/2).toFixed() : ((value-11)/2).toFixed())}</h1>
+      <h3>{value}</h3>
     </div>
   )
 }
